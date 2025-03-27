@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Superhéroe</title>
+</head>
+<body>
+    <h1>Agrega un superhéroe</h1>
+    <form action="/api/heroes/crear-heroe" method="post">
+        <label for="nombreSuperheroe">Nombre Superhéroe</label>
+        <input name="nombreSuperheroe" type="text" minlength="3" maxlength="60" required>
+        <br>
+        <label for="nombreReal">Nombre Real</label>
+        <input name="nombreReal" type="text" minlength="3" maxlength="60" required>
+        <br>
+        <label for="edad">Edad</label>
+        <input name="edad" type="number" min="1" required>
+        <br>
+        <label for="planetaOrigen">Planeta de Orígen</label>
+        <input name="planetaOrigen" type="text" minlength="3" maxlength="60" required>
+        <br>
+        <label for="debilidad">Debilidad</label>
+        <input name="debilidad" type="text" minlength="3" maxlength="60">
+        <br>
+        <label for="poderes">Poderes</label>
+        <input name="poderes[]" type="text" minlength="3" maxlength="60">
+        <input name="poderes[]" type="text" minlength="3" maxlength="60">
+        <input name="poderes[]" type="text" minlength="3" maxlength="60">
+        <br>
+        <label for="aliados">Aliados</label>
+        <input name="aliados[]" type="text" minlength="3" maxlength="60">
+        <input name="aliados[]" type="text" minlength="3" maxlength="60">
+        <input name="aliados[]" type="text" minlength="3" maxlength="60">
+        <br>
+        <label for="enemigos">Enemigos</label>
+        <input name="enemigos[]" type="text" minlength="3" maxlength="60">
+        <input name="enemigos[]" type="text" minlength="3" maxlength="60">
+        <input name="enemigos[]" type="text" minlength="3" maxlength="60">
+        <br>
+        <label for="creador">Creador</label>
+        <input name="creador" type="text" required minlength="3" maxlength="60">
+
+        <button type="submit">Agregar Superhéroe</button>
+    </form>
+    <!-- validar datos frontend y backend -->
+</body>
+</html>

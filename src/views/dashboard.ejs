@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Superheroes</title>
+</head>
+<body>
+    <h1>Todos los Superhéroes</h1>
+    <!-- Mostrar a todos los superheroes obtenerTodosLosSuperheroesController -->
+    
+    <ul>
+        <% superheroesFormateados.forEach( (heroe) => { %>
+        <li> <%= heroe.Nombre + ' (' + heroe["Nombre Real"] + ')'  %> </li>
+        <!-- agregar alerta eliminación -->
+        <button> eliminar</button>
+        <% }); %>
+    </ul>
+</body>
+</html>
