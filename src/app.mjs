@@ -14,9 +14,11 @@ const __dirname = path.dirname(__filename); // Get the name of the directory
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views')); // ajustar ruta
 
-// Middleware para analizar solicitudes
+// Middleware para procesar datos de formulario
 app.use(bodyParser.urlencoded({ extended: true })); // Para formularios URL-encoded
 app.use(express.json());
+// app.use('/controllers', express.static(path.join(__dirname, 'controllers')));
+// app.use('/src', express.static('src'));
 
 // conexión a mongoDB
 connectDB();

@@ -18,3 +18,14 @@ export const renderizarSuperheroe = ( superheroe ) => {
 export const renderizarListaSuperheroes = (superheroes) => {
     return superheroes.map(superheroe => renderizarSuperheroe(superheroe));
 }
+
+export const formatearArray = ( textoArray = '' ) => {
+    return textoArray
+        .split(",")
+        .map(( elemento ) => {
+            return elemento.trim();
+        })
+        .filter( elemento => {
+            return elemento !== ""
+        } );
+}

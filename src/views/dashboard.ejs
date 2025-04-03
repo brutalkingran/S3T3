@@ -7,14 +7,34 @@
 </head>
 <body>
     <h1>Todos los Superhéroes</h1>
-    <!-- Mostrar a todos los superheroes obtenerTodosLosSuperheroesController -->
     
     <ul>
-        <% superheroesFormateados.forEach( (heroe) => { %>
-        <li> <%= heroe.Nombre + ' (' + heroe["Nombre Real"] + ')'  %> </li>
-        <!-- agregar alerta eliminación -->
-        <button> eliminar</button>
+        <% superheroes.forEach( (heroe) => { %>
+            <li> <%= heroe.nombreSuperHeroe+ ' (' + heroe.nombreReal + ')'  %> </li>
+            <!-- agregar alerta eliminación -->
+            <button onclick="window.location.href='/api/formulario/modificar-heroe-formulario/<%= heroe._id %>'">Modificar</button>
+            <button id="edit-button" data-id="<%= heroe._id %>">editar</button>
+            <button id="delete-button" data-id="<%= heroe._id %>">eliminar</button>
         <% }); %>
     </ul>
+
+    <script>
+        document.getElementById('edit-button').addEventListener('click', async function () {
+            const heroeID = this.getAttribute('data-id');
+            try {
+                const response = await fetch('/formulario/modificar-heroe-formulario/', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ id: heroeID })
+                });
+                const result = await response.json();
+                console.log(result);
+            } catch (error) {
+                console.error('Error al modificar el superhéroe:', error);
+            }
+        });
+    </script>
 </body>
 </html>

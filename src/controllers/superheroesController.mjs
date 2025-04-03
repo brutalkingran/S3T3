@@ -29,11 +29,8 @@ export const obtenerSuperheroePorIdController = async ( req, res ) => {
 export const obtenerTodosLosSuperheroesController = async ( req, res ) => {
     try {
         const superheroes = await obtenerTodosLosSuperheroes();
-        const superheroesFormateados = renderizarListaSuperheroes(superheroes);
 
-        
-        //res.status(200).json(superheroesFormateados)
-        res.render('dashboard', { superheroesFormateados });
+        res.render('dashboard', { superheroes });
     } catch (error) {
         res.status(500).send({
             mensaje: `Error al obtener los superhéroes`,
@@ -87,13 +84,27 @@ export const obtenerSuperheroesMayoresDe30Controller = async ( req, res ) => {
 export const crearSuperheroeController = async ( req, res ) => {
     try {
         const { nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador } = req.body;
-
+        
         const superheroeFormateado = await crearSuperheroe( nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador );
 
         res.status(201).json(superheroeFormateado); // 201 indica que se ha creado un recurso.
     } catch (error) {
         res.status(500).send({
             mensaje: `Error al crear superhéroe`,
+            error: error.mensaje
+        });
+    }
+}
+
+export const modificarSuperheroeFormularioController = async ( req, res ) => {
+    try {
+        const { heroeID } = req.params;
+        const superheroeEditable = await obtenerSuperheroePorIdController( heroeID );
+        
+        res.render('editSuperhero', { superheroeEditable });
+    } catch (error) {
+        res.status(500).send({
+            mensaje: `Error al encontrar formulario`,
             error: error.mensaje
         });
     }
