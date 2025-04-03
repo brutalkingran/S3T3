@@ -4,6 +4,7 @@ import superheroeRoutes from './routes/superheroesRoutes.mjs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import bodyParser from 'body-parser';
+import methodOverride from 'method-override';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // Para formularios URL-enco
 app.use(express.json());
 // app.use('/controllers', express.static(path.join(__dirname, 'controllers')));
 // app.use('/src', express.static('src'));
+app.use(methodOverride('_method')); // Middleware para usar PUT o DELETE desde formularios
 
 // conexión a mongoDB
 connectDB();

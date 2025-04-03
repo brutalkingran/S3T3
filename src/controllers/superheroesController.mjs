@@ -26,19 +26,6 @@ export const obtenerSuperheroePorIdController = async ( req, res ) => {
     }
 }
 
-export const obtenerTodosLosSuperheroesController = async ( req, res ) => {
-    try {
-        const superheroes = await obtenerTodosLosSuperheroes();
-
-        res.render('dashboard', { superheroes });
-    } catch (error) {
-        res.status(500).send({
-            mensaje: `Error al obtener los superhéroes`,
-            error: error.mensaje
-        });
-    }
-}
-
 export const buscarSuperheroesPorAtributoController = async ( req, res ) => {
     try {
         const { atributo, valor } = req.params;
@@ -96,27 +83,20 @@ export const crearSuperheroeController = async ( req, res ) => {
     }
 }
 
-export const modificarSuperheroeFormularioController = async ( req, res ) => {
-    try {
-        const { heroeID } = req.params;
-        const superheroeEditable = await obtenerSuperheroePorIdController( heroeID );
-        
-        res.render('editSuperhero', { superheroeEditable });
-    } catch (error) {
-        res.status(500).send({
-            mensaje: `Error al encontrar formulario`,
-            error: error.mensaje
-        });
-    }
-}
-
 export const actualizarSuperheroeController = async ( req, res ) => {
     try {
-        const { nombre, cambio } = req.body; // parámetros POST o PUT
+        const datosActualizados = req.body; // parámetros POST o PUT
 
-        const superheroeFormateado = await actualizarSuperheroe( nombre, cambio );
+        const superheroeModificado = await actualizarSuperheroe( datosActualizados.id, datosActualizados );
 
-        res.status(200).json(superheroeFormateado); // 200 indica actualización exitosa
+        // const superheroeFormateado = renderizarListaSuperheroes(superheroeModificado);
+
+        // Codificamos el JSON para que pueda viajar en la URL
+        // const superheroeString = encodeURIComponent(JSON.stringify(superheroeFormateado));
+
+        // res.status(200).json(superheroeFormateado); // 200 indica actualización exitosa
+        // res.redirect(`/api/heroes?cambio=${superheroeString}`); // Redirigir al dashboard después de la actualización
+        res.redirect(`/api/heroes`);
     } catch (error) {
         res.status(500).send({
             mensaje: `Error al actualizar superhéroe`,

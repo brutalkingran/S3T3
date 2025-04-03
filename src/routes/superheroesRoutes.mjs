@@ -3,9 +3,10 @@
 // 7)
 
 import express from 'express';
-import { obtenerSuperheroePorIdController, obtenerTodosLosSuperheroesController, buscarSuperheroesPorAtributoController, obtenerSuperheroesMayoresDe30Controller, crearSuperheroeController, actualizarSuperheroeController, borrarSuperheroeIDController, borrarSuperheroeNombreController, modificarSuperheroeFormularioController } from '../controllers/superheroesController.mjs';
+import { obtenerSuperheroePorIdController, buscarSuperheroesPorAtributoController, obtenerSuperheroesMayoresDe30Controller, crearSuperheroeController, actualizarSuperheroeController, borrarSuperheroeIDController, borrarSuperheroeNombreController } from '../controllers/superheroesController.mjs';
 import { registerValidationRules } from '../validations/validationRules.mjs';
 import { handleValidationErrors } from '../validations/errorMiddleware.mjs';
+import { modificarSuperheroeFormularioController, obtenerTodosLosSuperheroesController } from '../controllers/ejsController.mjs';
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ router.get('/heroes/mayores-30', obtenerSuperheroesMayoresDe30Controller);
 router.get('/formulario/crear-heroe-formulario', (req, res) => {
     res.render('addSuperhero'); 
 });
-router.get('/formulario/modificar-heroe-formulario/:heroeID', modificarSuperheroeFormularioController)
+router.get('/formulario/modificar-heroe-formulario/:id', modificarSuperheroeFormularioController)
 
 router.post('/heroes/crear-heroe', registerValidationRules(), handleValidationErrors, crearSuperheroeController);
 

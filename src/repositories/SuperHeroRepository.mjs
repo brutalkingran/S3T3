@@ -46,8 +46,8 @@ class SuperHeroeRepository extends IRepository {
         });
     };
 
-    async actualizarHeroe( nombre, cambio ) {
-        return await superHeroe.findOneAndUpdate({ nombreSuperHeroe : nombre }, cambio, { new: true }); // devuelve documento actualizado
+    async actualizarHeroe( id, datosActualizados ) {
+        return await superHeroe.findByIdAndUpdate( id, datosActualizados, { new: true }); // devuelve documento actualizado
     }
 
     async borrarheroeID( id ) {
