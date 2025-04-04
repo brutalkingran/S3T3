@@ -1,10 +1,10 @@
-import { body } from 'express-validator';
+import { body, param } from 'express-validator';
 import { formatearArray } from '../views/responseView.mjs';
 
 export const deleteByIdValidationRules = () => [
     param('id')
         .notEmpty().withMessage('El ID es obligatorio.')
-        .isInt({ min: 1 }).withMessage('El ID debe ser un número entero positivo.')
+        .isMongoId().withMessage('El ID debe ser un identificador válido de MongoDB.')
 ];
 
 export const deleteByNameValidationRules = () => [
@@ -14,7 +14,7 @@ export const deleteByNameValidationRules = () => [
 ];
 
 export const updateValidationRules = () => [
-    body('nombreSuperheroe')
+    body('nombreSuperHeroe')
         .optional()
         .trim()
         .isLength({ min: 3, max: 60 }).withMessage('Ingrese un nombre de superhéroe válido con una longitud entre 3 y 60 caracteres.'),
@@ -90,7 +90,7 @@ export const updateValidationRules = () => [
 
 export const registerValidationRules = () => [
     // nombreSuperheroe debe validarse que sea requerido, no tenga espacios en blanco(trim), una longitud minima de 3 caracteres y una longitud maxima de 60
-    body('nombreSuperheroe')
+    body('nombreSuperHeroe')
         .trim() // nota: trim valida que sean strings
         .notEmpty().withMessage("Campo 'nombreSuperheroe' obligatorio.")
         .isLength({ min : 3, max : 60}).withMessage('Ingrese un nombre de superhéroe válido con una longitud entre 3 y 60 caracteres.'),
