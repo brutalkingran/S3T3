@@ -44,9 +44,6 @@
                             throw new Error('Error en la eliminación');
                         }
 
-                        const result = await response.json();
-                        console.log('Superhéroe eliminado:', result);
-
                         // Recargar la página después de eliminar
                         location.reload();
 

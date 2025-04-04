@@ -1,6 +1,12 @@
 import { body } from 'express-validator';
 import { formatearArray } from '../views/responseView.mjs';
 
+export const deleteByIdValidationRules = () => [
+    param('id')
+        .notEmpty().withMessage('El ID es obligatorio.')
+        .isInt({ min: 1 }).withMessage('El ID debe ser un número entero positivo.')
+];
+
 export const registerValidationRules = () => [
     // nombreSuperheroe debe validarse que sea requerido, no tenga espacios en blanco(trim), una longitud minima de 3 caracteres y una longitud maxima de 60
     body('nombreSuperHeroe')

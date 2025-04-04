@@ -3,7 +3,7 @@ import { obtenerSuperheroePorId, obtenerTodosLosSuperheroes } from "../services/
 export const obtenerTodosLosSuperheroesController = async ( req, res ) => {
     try {
         const superheroes = await obtenerTodosLosSuperheroes();
-
+        
         const cambio = req.query.cambio ? JSON.parse(decodeURIComponent(req.query.cambio)) : null; // por si hay cambio en la URL
 
         res.render('dashboard', { superheroes, cambio });
