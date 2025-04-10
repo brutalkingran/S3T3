@@ -6,66 +6,78 @@
     <title>Dashboard - Superheroes</title>
 </head>
 <body>
-    <h1>Todos los Superhéroes</h1>
-    
-    <div id="cambio">
-        <% if (cambio) { %>
-            <h2>¡Modificación Realizada con Éxito!</h2>
-            <pre><%= JSON.stringify(cambio, null, 2) %></pre>
-        <% } %>
+    <nav class="accesos">
+        <a href="index.ejs">Página Principal</a>
+        <a href="dashboard.ejs">Lista de Superhéroes</a>
+        <a href="addSuperhero.ejs">Agregar Superhéroe</a>
+    </nav>
+
+    <div class="content">
+        <h1>Todos los Superhéroes</h1>
+        
+        <div id="cambio">
+            <% if (cambio) { %>
+                <h2>¡Modificación Realizada con Éxito!</h2>
+                <pre><%= JSON.stringify(cambio, null, 2) %></pre>
+            <% } %>
+        </div>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nombre de Superhéroe</th>
+                    <th>Nombre Real</th>
+                    <th>Edad</th>
+                    <th>Debilidad</th>
+                    <th>Creador</th>
+                    <th>Poderes</th>
+                    <th>Aliados</th>
+                    <th>Enemigos</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% superheroes.forEach((heroe)=> { %>
+                    <tr>
+                        <td>
+                            <%= heroe.nombreSuperHeroe %>
+                        </td>
+                        <td>
+                            <%= heroe.nombreReal %>
+                        </td>
+                        <td>
+                            <%= heroe.edad %>
+                        </td>
+                        <td>
+                            <%= heroe.debilidad || "N/A" %>
+                        </td>
+                        <td>
+                            <%= heroe.creador %>
+                        </td>
+                        <td>
+                            <%= heroe.poderes.join(", ") %></td>
+                        <td><%= heroe.aliados.join(" , ") %></td>
+                        <td><%= heroe.enemigos.join(" , ") %></td>
+                        <td>
+                            <button onclick="
+                                window.location.href='/api/formulario/modificar-heroe-formulario/<%= heroe._id %>'">
+                                Modificar
+                            </button>
+                            <button class="delete-button" name-hero="<%= heroe.nombreSuperHeroe %>" data-id="<%= heroe._id %>">
+                                Eliminar
+                            </button>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+
+        <a href="http://localhost:3000/api/formulario/crear-heroe-formulario">Crear Héroe</a>
     </div>
 
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Nombre de Superhéroe</th>
-                <th>Nombre Real</th>
-                <th>Edad</th>
-                <th>Debilidad</th>
-                <th>Creador</th>
-                <th>Poderes</th>
-                <th>Aliados</th>
-                <th>Enemigos</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% superheroes.forEach((heroe)=> { %>
-                <tr>
-                    <td>
-                        <%= heroe.nombreSuperHeroe %>
-                    </td>
-                    <td>
-                        <%= heroe.nombreReal %>
-                    </td>
-                    <td>
-                        <%= heroe.edad %>
-                    </td>
-                    <td>
-                        <%= heroe.debilidad || "N/A" %>
-                    </td>
-                    <td>
-                        <%= heroe.creador %>
-                    </td>
-                    <td>
-                        <%= heroe.poderes.join(", ") %></td>
-                    <td><%= heroe.aliados.join(" , ") %></td>
-                    <td><%= heroe.enemigos.join(" , ") %></td>
-                    <td>
-                        <button onclick="
-                            window.location.href='/api/formulario/modificar-heroe-formulario/<%= heroe._id %>'">
-                            Modificar
-                        </button>
-                        <button class="delete-button" name-hero="<%= heroe.nombreSuperHeroe %>" data-id="<%= heroe._id %>">
-                            Eliminar
-                        </button>
-                    </td>
-                </tr>
-                <% }); %>
-        </tbody>
-    </table>
-
-    <a href="http://localhost:3000/api/formulario/crear-heroe-formulario">Crear Héroe</a>
+    <footer>
+        <p>&copy; 2023 Esparza, Patricio Osvaldo <a href="mailto:esparzapatricio95@gmail.com">esparzapatricio95@gmail.com</a></p>
+    </footer>
 
     <script>
         document.querySelectorAll('.delete-button').forEach(button => { // cambiamos de id a class
