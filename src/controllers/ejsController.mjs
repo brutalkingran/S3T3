@@ -1,5 +1,27 @@
 import { obtenerSuperheroePorId, obtenerTodosLosSuperheroes } from "../services/superheroesService.mjs";
 
+export const indexController = async ( req, res ) => {
+    try {
+        res.render('index'); 
+    } catch (error) {
+        res.status(500).send({
+            mensaje: `Error al acceder a index`,
+            error: error.mensaje
+        });
+    }
+}
+
+export const crearSuperHeroeFormularioController = async ( req, res ) => {
+    try {
+        res.render('addSuperhero'); 
+    } catch (error) {
+        res.status(500).send({
+            mensaje: `Error al acceder a Dashboard`,
+            error: error.mensaje
+        });
+    }
+}
+
 export const obtenerTodosLosSuperheroesController = async ( req, res ) => {
     try {
         const superheroes = await obtenerTodosLosSuperheroes();
