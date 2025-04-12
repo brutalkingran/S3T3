@@ -50,3 +50,43 @@ export const modificarSuperheroeFormularioController = async ( req, res ) => {
         });
     }
 }
+
+// Ruta principal
+app.get('/', (req, res) => {
+    res.render('index', {
+        title: 'Página Principal',
+        navbarLinks: [
+            { text: 'Inicio', href: '/', icon: '/icons/home.svg' },
+            { text: 'Dashboard', href: '/dashboard', icon: '/icons/info.svg' },
+            { text: 'Añadir Superhéroe', href: '/addSuperhero', icon: '/icons/contact.svg' }
+        ]
+    });
+});
+
+app.get('/addSuperhero', (req, res) => {
+    res.render('addSuperhero', {
+        title: 'Añadir Superhéroe',
+        navbarLinks: [
+            { text: 'Inicio', href: '/', icon: '/icons/home.svg' },
+            { text: 'Dashboard', href: '/dashboard', icon: '/icons/info.svg' },
+            { text: 'Añadir Superhéroe', href: '/addSuperhero', icon: '/icons/contact.svg' }
+        ]
+    });
+})
+
+app.get('/dashboard', async (req, res) => {
+    const superheroes = await obtenerTodosLosSuperheroes();
+            
+    const cambio = req.query.cambio ? JSON.parse(decodeURIComponent(req.query.cambio)) : null; // por si hay cambio en la URL
+
+    res.render('dashboard', {
+        superheroes,
+        cambio,
+        title: 'Dashboard',
+        navbarLinks: [
+            { text: 'Inicio', href: '/', icon: '/icons/home.svg' },
+            { text: 'Dashboard', href: '/dashboard', icon: '/icons/info.svg' },
+            { text: 'Añadir Superhéroe', href: '/addSuperhero', icon: '/icons/contact.svg' }
+        ]
+    });
+})

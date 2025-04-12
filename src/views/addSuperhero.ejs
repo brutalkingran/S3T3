@@ -1,53 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Superhéroe</title>
-</head>
-<body>
-    <nav class="accesos">
-        <a href="http://localhost:3000/api/index">Página Principal</a>
-        <a href="http://localhost:3000/api/dashboard">Lista de Superhéroes</a>
-        <a href="http://localhost:3000/api/formulario/crear-heroe-formulario">Agregar Superhéroe</a>
-    </nav>
 
-    <div class="content">
-        <h1>Agrega un superhéroe</h1>
-        <form action="/api/heroes/crear-heroe" method="post">
-            <label for="nombreSuperHeroe">Nombre Superhéroe</label>
-            <input name="nombreSuperHeroe" type="text" minlength="3" maxlength="60" required>
-            <br>
-            <label for="nombreReal">Nombre Real</label>
-            <input name="nombreReal" type="text" minlength="3" maxlength="60" required>
-            <br>
-            <label for="edad">Edad</label>
-            <input name="edad" type="number" min="1" required>
-            <br>
-            <label for="planetaOrigen">Planeta de Orígen</label>
-            <input name="planetaOrigen" type="text" minlength="3" maxlength="60" required>
-            <br>
-            <label for="debilidad">Debilidad</label>
-            <input name="debilidad" type="text" minlength="3" maxlength="60">
-            <br>
-            <label for="poderes">Poderes</label>
-            <input name="poderes" type="text" minlength="3" maxlength="180" placeholder="para añadir múltiples aliados, separar cada uno por comas. ej: volar, planear">
-            <br>
-            <label for="aliados">Aliados</label>
-            <input name="aliados" type="text" minlength="3" maxlength="180" placeholder="para añadir múltiples aliados, separar cada uno por comas. ej: Spiderman, Hulk, Wonder Woman">
-            <br>
-            <label for="enemigos">Enemigos</label>
-            <input name="enemigos" type="text" minlength="3" maxlength="180" placeholder="para añadir múltiples enemigos, separar cada uno por comas. ej: John Williams, Bob Richards">
-            <br>
-            <label for="creador">Creador</label>
-            <input name="creador" type="text" required minlength="3" maxlength="60">
+<section>
+    <h1>Agrega un superhéroe</h1>
+    <form action="/api/heroes/crear-heroe" method="post">
+        <label for="nombreSuperHeroe">Nombre Superhéroe</label>
+        <input name="nombreSuperHeroe" type="text" minlength="3" maxlength="60" required>
+        <br>
+        <label for="nombreReal">Nombre Real</label>
+        <input name="nombreReal" type="text" minlength="3" maxlength="60" required>
+        <br>
+        <label for="edad">Edad</label>
+        <input name="edad" type="number" min="1" required>
+        <br>
+        <label for="planetaOrigen">Planeta de Orígen</label>
+        <input name="planetaOrigen" type="text" minlength="3" maxlength="60" required>
+        <br>
+        <label for="debilidad">Debilidad</label>
+        <input name="debilidad" type="text" minlength="3" maxlength="60">
+        <br>
+        <label for="poderes">Poderes</label>
+        <input name="poderes" type="text" minlength="3" maxlength="180" placeholder="para añadir múltiples aliados, separar cada uno por comas. ej: volar, planear">
+        <br>
+        <label for="aliados">Aliados</label>
+        <input name="aliados" type="text" minlength="3" maxlength="180" placeholder="para añadir múltiples aliados, separar cada uno por comas. ej: Spiderman, Hulk, Wonder Woman">
+        <br>
+        <label for="enemigos">Enemigos</label>
+        <input name="enemigos" type="text" minlength="3" maxlength="180" placeholder="para añadir múltiples enemigos, separar cada uno por comas. ej: John Williams, Bob Richards">
+        <br>
+        <label for="creador">Creador</label>
+        <input name="creador" type="text" required minlength="3" maxlength="60">
 
-            <button type="submit">Agregar Superhéroe</button>
-        </form>
-    </div>
-
-    <footer>
-        <p>&copy; 2023 Esparza, Patricio Osvaldo <a href="mailto:esparzapatricio95@gmail.com">esparzapatricio95@gmail.com</a></p>
-    </footer>
-</body>
-</html>
+        <button type="submit">Agregar Superhéroe</button>
+    </form>
+</section>
