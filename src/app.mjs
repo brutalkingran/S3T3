@@ -27,14 +27,14 @@ app.use(expressLayouts); // Activa middleware
 app.set('layout', 'layout');
 
 // Cambiar la ruta para servir archivos estáticos
-app.use(express.static(path.join(__dirname, 'views', 'public'))); // archivos estáticos
+app.use(express.static(path.join(__dirname, 'public'))); // archivos estáticos
 
 // conexión a mongoDB
 connectDB();
 
 // Configuración de rutas
 app.use('/api', superheroeRoutes);
-app.use('/', superheroeRoutes);
+app.use('/', ejsRoutes);
 
 // manejo de errores para rutas no encontradas
 app.use((req, res) => res.status(404).send({ mensaje: "Ruta no encontrada" }));

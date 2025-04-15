@@ -41,7 +41,7 @@
                     <td><%= heroe.enemigos.join(" , ") %></td>
                     <td>
                         <button onclick="
-                            window.location.href='/api/formulario/modificar-heroe-formulario/<%= heroe._id %>'">
+                            window.location.href='/modifyHero/<%= heroe._id %>'">
                             Modificar
                         </button>
                         <button class="delete-button" name-hero="<%= heroe.nombreSuperHeroe %>" data-id="<%= heroe._id %>">

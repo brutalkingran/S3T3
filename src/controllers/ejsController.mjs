@@ -1,48 +1,94 @@
 import { obtenerSuperheroePorId, obtenerTodosLosSuperheroes } from "../services/superheroesService.mjs";
 
-export const indexController = async ( req, res ) => {
+// Ruta principal
+export const mostrarIndexController = async ( req, res ) => {
     try {
-        res.render('index'); 
+        res.render('index', {
+            title: 'Página Principal',
+            navbarLinks: [
+                { text: 'Inicio', href: '/', icon: '/icons/home.svg' },
+                { text: 'Dashboard', href: '/dashboard', icon: '/icons/info.svg' },
+                { text: 'Añadir Superhéroe', href: '/addSuperhero', icon: '/icons/contact.svg' }
+            ]
+        });
     } catch (error) {
         res.status(500).send({
-            mensaje: `Error al acceder a index`,
+            mensaje: `Error al cargar index`,
             error: error.mensaje
         });
+    }
+}
+
+export const mostrarDashboardController = async  (req, res) => {
+    try {
+        const superheroes = await obtenerTodosLosSuperheroes(); 
+        const cambio = req.query.cambio ? JSON.parse(decodeURIComponent(req.query.cambio)) : null; // por si hay cambio en la URL
+
+        res.render('dashboard', {
+            superheroes,
+            cambio,
+            title: 'Dashboard',
+            navbarLinks: [
+                { text: 'Inicio', href: '/', icon: '/icons/home.svg' },
+                { text: 'Dashboard', href: '/dashboard', icon: '/icons/info.svg' },
+                { text: 'Añadir Superhéroe', href: '/addSuperhero', icon: '/icons/contact.svg' }
+            ]
+        });       
+    } catch (error) {
+        res.status(500).send({
+            mensaje: `Error al cargar dashboard`,
+            error: error.mensaje
+        });  
     }
 }
 
 export const crearSuperHeroeFormularioController = async ( req, res ) => {
     try {
-        res.render('addSuperhero'); 
+        res.render('addSuperhero', {
+            title: 'Añadir Superhéroe',
+            navbarLinks: [
+                { text: 'Inicio', href: '/', icon: '/icons/home.svg' },
+                { text: 'Dashboard', href: '/dashboard', icon: '/icons/info.svg' },
+                { text: 'Añadir Superhéroe', href: '/addSuperhero', icon: '/icons/contact.svg' }
+            ]
+        });
     } catch (error) {
         res.status(500).send({
-            mensaje: `Error al acceder a Dashboard`,
+            mensaje: `Error al acceder al formulario`,
             error: error.mensaje
         });
     }
 }
 
-export const obtenerTodosLosSuperheroesController = async ( req, res ) => {
-    try {
-        const superheroes = await obtenerTodosLosSuperheroes();
+// export const obtenerTodosLosSuperheroesController = async ( req, res ) => {
+//     try {
+//         const superheroes = await obtenerTodosLosSuperheroes();
         
-        const cambio = req.query.cambio ? JSON.parse(decodeURIComponent(req.query.cambio)) : null; // por si hay cambio en la URL
+//         const cambio = req.query.cambio ? JSON.parse(decodeURIComponent(req.query.cambio)) : null; // por si hay cambio en la URL
 
-        res.render('dashboard', { superheroes, cambio });
-    } catch (error) {
-        res.status(500).send({
-            mensaje: `Error al obtener los superhéroes`,
-            error: error.mensaje
-        });
-    }
-}
+//         res.render('dashboard', { superheroes, cambio });
+//     } catch (error) {
+//         res.status(500).send({
+//             mensaje: `Error al obtener los superhéroes`,
+//             error: error.mensaje
+//         });
+//     }
+// }
 
 export const modificarSuperheroeFormularioController = async ( req, res ) => {
     try {
         const { id } = req.params;
         const superheroeEditable = await obtenerSuperheroePorId( id );
         
-        res.render('editSuperhero', { superheroeEditable });
+        res.render('editSuperhero', {
+            superheroeEditable,
+            title: 'Editar Superhéroe',
+            navbarLinks: [
+                { text: 'Inicio', href: '/', icon: '/icons/home.svg' },
+                { text: 'Dashboard', href: '/dashboard', icon: '/icons/info.svg' },
+                { text: 'Añadir Superhéroe', href: '/addSuperhero', icon: '/icons/contact.svg' }
+            ]
+        });
     } catch (error) {
         res.status(500).send({
             mensaje: `Error al cargar formulario`,
@@ -51,42 +97,21 @@ export const modificarSuperheroeFormularioController = async ( req, res ) => {
     }
 }
 
-// Ruta principal
-app.get('/', (req, res) => {
-    res.render('index', {
-        title: 'Página Principal',
-        navbarLinks: [
-            { text: 'Inicio', href: '/', icon: '/icons/home.svg' },
-            { text: 'Dashboard', href: '/dashboard', icon: '/icons/info.svg' },
-            { text: 'Añadir Superhéroe', href: '/addSuperhero', icon: '/icons/contact.svg' }
-        ]
-    });
-});
-
-app.get('/addSuperhero', (req, res) => {
-    res.render('addSuperhero', {
-        title: 'Añadir Superhéroe',
-        navbarLinks: [
-            { text: 'Inicio', href: '/', icon: '/icons/home.svg' },
-            { text: 'Dashboard', href: '/dashboard', icon: '/icons/info.svg' },
-            { text: 'Añadir Superhéroe', href: '/addSuperhero', icon: '/icons/contact.svg' }
-        ]
-    });
-})
-
-app.get('/dashboard', async (req, res) => {
-    const superheroes = await obtenerTodosLosSuperheroes();
-            
-    const cambio = req.query.cambio ? JSON.parse(decodeURIComponent(req.query.cambio)) : null; // por si hay cambio en la URL
-
-    res.render('dashboard', {
-        superheroes,
-        cambio,
-        title: 'Dashboard',
-        navbarLinks: [
-            { text: 'Inicio', href: '/', icon: '/icons/home.svg' },
-            { text: 'Dashboard', href: '/dashboard', icon: '/icons/info.svg' },
-            { text: 'Añadir Superhéroe', href: '/addSuperhero', icon: '/icons/contact.svg' }
-        ]
-    });
-})
+export const mostrarErroresController = async ( req, res ) => {
+    try {
+        res.render('errorDisplay', {
+            errors: errors.array(),
+            title: 'Error',
+            navbarLinks: [
+                { text: 'Inicio', href: '/', icon: '/icons/home.svg' },
+                { text: 'Dashboard', href: '/dashboard', icon: '/icons/info.svg' },
+                { text: 'Añadir Superhéroe', href: '/addSuperhero', icon: '/icons/contact.svg' }
+            ]
+        });    
+    } catch (error) {
+        res.status(500).send({
+            mensaje: `Error al cargar errores`,
+            error: error.mensaje
+        });
+    }
+}
