@@ -6,7 +6,9 @@ export const handleValidationErrors = (req, res, next) => {
 
     if ( !errors.isEmpty() ) {
         // return res.status(400).json({ errors: errors.array() });
-        return mostrarErroresController(errors);
+        
+        req.validationErrors = errors.array(); // creamos el req
+        return mostrarErroresController(req, res);
     }
 
     next();

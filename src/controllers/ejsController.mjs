@@ -100,7 +100,7 @@ export const modificarSuperheroeFormularioController = async ( req, res ) => {
 export const mostrarErroresController = async ( req, res ) => {
     try {
         res.render('errorDisplay', {
-            errors: errors.array(),
+            errors: req.validationErrors,
             title: 'Error',
             navbarLinks: [
                 { text: 'Inicio', href: '/', icon: '/icons/home.svg' },

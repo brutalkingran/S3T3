@@ -1,7 +1,7 @@
 <section>
     <ul>
         <% errors.forEach((error)=> { %>
-            <li><%= error  %></li>
-        <% } %>
+            <li><strong><%= error.path %></strong>: <%= error.msg %></li>
+        <% }); %>
     </ul>
 </section>
