@@ -8,6 +8,9 @@ import bodyParser from 'body-parser';
 import methodOverride from 'method-override';
 import expressLayouts from 'express-ejs-layouts';
 
+import dotenv from 'dotenv';
+dotenv.config(); // Cargar las variables de entorno desde el archivo .env
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
