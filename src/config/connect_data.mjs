@@ -1,0 +1,1 @@
+export const connect_data = "mongodb+srv://Grupo-03:grupo03@cursadanodejs.ls9ii.mongodb.net/Node-js";

@@ -2,8 +2,7 @@
 // Contiene archivos con configuraciones del entorno, como variables de entorno, configuración de la base de datos, puertos, claves de API, etc.
 
 import mongoose from 'mongoose';
-
-const connect_data = 'mongodb+srv://Grupo-03:grupo03@cursadanodejs.ls9ii.mongodb.net/Node-js'
+import { connect_data } from './connect_data.mjs';
 
 export const connectDB = async() => {
     try {

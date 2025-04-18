@@ -74,7 +74,8 @@ export const crearSuperheroeController = async ( req, res ) => {
         
         const superheroeFormateado = await crearSuperheroe( nombreSuperHeroe, nombreReal, edad, planetaOrigen, debilidad, poderes, aliados, enemigos, creador );
 
-        res.status(201).json(superheroeFormateado); // 201 indica que se ha creado un recurso.
+        // res.status(201).json(superheroeFormateado); // 201 indica que se ha creado un recurso.
+        res.redirect(`/dashboard`);
     } catch (error) {
         res.status(500).send({
             mensaje: `Error al crear superhéroe`,
@@ -96,7 +97,8 @@ export const actualizarSuperheroeController = async ( req, res ) => {
 
         // res.status(200).json(superheroeFormateado); // 200 indica actualización exitosa
         // res.redirect(`/api/heroes?cambio=${superheroeString}`); // Redirigir al dashboard después de la actualización
-        res.redirect(`/api/heroes`);
+        // res.redirect(`/api/heroes`);
+        res.redirect(`/dashboard`);
     } catch (error) {
         res.status(500).send({
             mensaje: `Error al actualizar superhéroe`,
